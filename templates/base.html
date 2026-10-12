@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}Главная{% endblock %} · AIСтарт</title>
+  <meta name="description" content="{% block description %}Готовые AI-модели, которые помогают новичкам создавать сайты: код, дизайн, тексты и обучение.{% endblock %}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="{{ url_for('index') }}" aria-label="AIСтарт — главная страница">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/>
+        </svg>
+        <span>AIСтарт</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="{{ url_for('index') }}#materials">Материалы</a>
+        <a href="{{ url_for('index') }}#about">Преимущества</a>
+        <a href="{{ url_for('index') }}#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer" id="contacts">
+    <div class="container footer__row">
+      <div>
+        <p class="footer__logo">AIСтарт</p>
+        <p class="footer__text">AI-модели для тех, кто создаёт сайты с нуля.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Навигация в подвале">
+        <a href="{{ url_for('index') }}#materials">Материалы</a>
+        <a href="{{ url_for('index') }}#about">Преимущества</a>
+        <a href="{{ url_for('index') }}">Главная</a>
+      </nav>
+      <p class="footer__text">Почта: hello@aistart.example</p>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> AIСтарт. Демонстрационный сайт.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

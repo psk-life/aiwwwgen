@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+  <section class="container not-found">
+    <h1>Страница не найдена</h1>
+    <p>К сожалению, такого адреса нет. Вернитесь к каталогу материалов и выберите нужный.</p>
+    <a class="button button--primary" href="{{ url_for('index') }}">Вернуться на главную</a>
+  </section>
+{% endblock %}

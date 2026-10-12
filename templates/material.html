@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ material.name }}{% endblock %}
+{% block description %}{{ material.tagline }}{% endblock %}
+
+{% block content %}
+  <section class="material container" aria-labelledby="material-title">
+    <nav class="breadcrumb" aria-label="Путь навигации">
+      <a href="{{ url_for('index') }}">Главная</a>
+      <span aria-hidden="true"> / </span>
+      <span aria-current="page">{{ material.name }}</span>
+    </nav>
+
+    <header class="material__head">
+      {% if material.badge %}<span class="card__badge">{{ material.badge }}</span>{% endif %}
+      <h1 id="material-title">{{ material.name }}</h1>
+      <p class="material__tagline">{{ material.tagline }}</p>
+      <ul class="card__meta">
+        <li>{{ material.category_name }}</li>
+        <li>Уровень: {{ material.level }}</li>
+      </ul>
+    </header>
+
+    <div class="material__layout">
+      <article class="material__content">
+        {% for paragraph in material.content %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+
+        <h2>Что входит в подписку</h2>
+        <ul class="features">
+          {% for feature in material.features %}
+            <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+
+        <h2>Как начать</h2>
+        <p>Оформите подписку, получите доступ к модели в личном кабинете и запустите первый проект уже сегодня. Средний новичок создаёт первую страницу за один вечер.</p>
+      </article>
+
+      <aside class="material__aside" aria-label="Покупка">
+        <div class="price-card">
+          <p class="price-card__label">Подписка</p>
+          <p class="price-card__value">{{ material.price }} ₽ <small>{{ material.price_note }}</small></p>
+          <button class="button button--primary js-buy" type="button">Купить</button>
+          <p class="price-card__note">Демо-сайт: оплата не подключена</p>
+          <ul class="price-card__list">
+            {% for feature in material.features %}
+              <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    {% if others %}
+      <section class="material__related" aria-labelledby="related-title">
+        <h2 id="related-title">Другие материалы</h2>
+        <ul class="related-list">
+          {% for item in others %}
+            <li><a href="{{ url_for('material', material_id=item.id) }}">{{ item.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}
